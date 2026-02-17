@@ -27,14 +27,10 @@ REQUEST_TIMEOUT = 15.0
 # MCP Server
 # ---------------------------------------------------------------------------
 
-PORT = int(os.environ.get("PORT", 8000))
-
 mcp = FastMCP(
     "aviation_weather_mcp",
     stateless_http=True,
     json_response=True,
-    host="0.0.0.0",
-    port=PORT,
 )
 
 # ---------------------------------------------------------------------------
@@ -276,5 +272,10 @@ async def get_station_info(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    logger.info(f"Starting Aviation Weather MCP server on port {PORT}")
-    mcp.run(transport="streamable-http")
+    port = int(os.environ.get("PORT", 8000))
+    logger.info(f"Starting Aviation Weather MCP server on port {port}")
+    mcp.run(
+        transport="streamable-http",
+        host="0.0.0.0",
+        port=port,
+    )
