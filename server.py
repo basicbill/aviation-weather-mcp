@@ -276,5 +276,6 @@ async def get_station_info(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    logger.info(f"Starting Aviation Weather MCP server on port {PORT}")
-    mcp.run(transport="streamable-http")
+    port = int(os.environ.get("PORT", 8000))
+    logger.info(f"Starting Aviation Weather MCP server on port {port}")
+    mcp.run(transport="streamable-http", port=port)
