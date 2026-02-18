@@ -32,7 +32,6 @@ mcp = FastMCP(
     stateless_http=True,
     json_response=True,
     host="0.0.0.0",
-    port=PORT,
 )
 
 # ---------------------------------------------------------------------------
