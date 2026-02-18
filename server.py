@@ -4,7 +4,6 @@ Provides METARs, TAFs, PIREPs, and SIGMETs/AIRMETs from aviationweather.gov
 for use as a Claude Chat custom connector.
 """
 
-import os
 import json
 import logging
 from typing import Optional
@@ -27,7 +26,6 @@ REQUEST_TIMEOUT = 15.0
 # MCP Server
 # ---------------------------------------------------------------------------
 
-PORT = int(os.environ.get("PORT", 8000))
 
 mcp = FastMCP(
     "aviation_weather_mcp",
@@ -276,6 +274,5 @@ async def get_station_info(
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    logger.info(f"Starting Aviation Weather MCP server on port {port}")
-    mcp.run(transport="streamable-http", port=port)
+    logger.info("Starting Aviation Weather MCP server")
+    mcp.run(transport="streamable-http")
